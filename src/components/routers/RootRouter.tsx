@@ -1,64 +1,28 @@
-import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import React, {useContext} from 'react';
-import {Route, RouteComponentProps, Switch, withRouter} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 
-import { AuthContext } from '../../providers/context';
-import First from '../pages/First';
-import Item from '../pages/Item';
-import Items from '../pages/Items';
-import NotFound from '../pages/NotFound';
-import Private from '../pages/Private';
-import RedirectRoute from '../shared/RedirectRoute';
-import Second from '../pages/Second';
-import Third from '../pages/Third';
-import styled from '@emotion/styled';
+import React from 'react';
+import {RouteType} from '../../types';
 
-// withRouter를 통해서 route(history, location etc) 관련 객체를 받아온다.
-const RootRouter = withRouter((props: RouteComponentProps) => {
-  const {location: {key}} = props;
-  const {isUserLoggedIn} = useContext(AuthContext);
+interface Props {
+  routes: RouteType[];
+} 
+function RootRouter(props: Props): React.ReactElement {
+  const {routes} = props;
+  const renderRoutes = routes.map((route, index) => (
+    <Route 
+      key={route.key}
+      path={route.path}
+      name={route.name}
+      component={route.component}
+      exact={route.exact}
+    />
+  ));
+  
   return (
-    <Wrapper>
-       <TransitionGroup>
-          <CSSTransition
-            key={key} // key를 "123"이렇게 정적인 값으로 해주니 transition이 작동하지않았다.
-            classNames={'anim'}
-            timeout={300}
-          >
-            <Switch>
-              <Route path="/" exact component={First} />
-              <Route path="/second" component={Second} />
-              <Route path="/third" component={Third} />
-              <Route path="/items" component={Items} exact={true} />
-              <Route path="/items/:userId" component={Item} exact={true} />
-              <RedirectRoute 
-                path="/private"
-                flag={isUserLoggedIn}
-                to="/"
-                page={Private}
-              />
-              <Route component={NotFound} />
-            </Switch>
-          </CSSTransition>
-        </TransitionGroup>
-    </Wrapper>
+    <Switch>
+      {renderRoutes}
+    </Switch>
   );
-})
-
-const Wrapper = styled.div`
-  .anim-enter {
-    opacity: 0;
-    z-index: 1;
-  }
-
-  .anim-exit {
-      display: none;
-  }
-
-  .anim-enter.anim-enter-active {
-      opacity: 1;
-      transition: opacity 1s ease-in;
-  }
-`;
+}
 
 export default RootRouter;
