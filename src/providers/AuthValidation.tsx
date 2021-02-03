@@ -15,9 +15,6 @@ const AuthValidation: React.FC = ({children}) => {
 
     if (isPreviousLoggedIn) {
       setIsUserLoggedIn(true);
-      // we need this flag for some timeout.
-            // Without it - application will return <children>
-            // and we don't want that.
       setIsGettingDataFromLS(false);
     } else {
       setIsGettingDataFromLS(false);
