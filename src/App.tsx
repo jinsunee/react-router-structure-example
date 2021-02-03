@@ -1,24 +1,19 @@
 import './App.css';
 
-import {Route, BrowserRouter as Router, Switch} from 'react-router-dom';
-
-import First from './components/pages/First';
+import AuthHandler from './providers/AuthHandler'
 import Navbar from './components/shared/Navbar'
 import React from 'react';
-import Second from './components/pages/Second';
-import Third from './components/pages/Third';
+import RootRouter from './components/routers/RootRouter'
+import {BrowserRouter as Router} from 'react-router-dom';
 
 function App() {
   return (
     <Router>
-      <div>
+      <AuthHandler>
         <Navbar />
-        <Switch>
-          <Route path="/" exact component={First} />
-          <Route path="/second" component={Second} />
-          <Route path="/third" component={Third} />
-        </Switch>
-      </div>
+        <hr />
+        <RootRouter />
+      </AuthHandler>
     </Router>
   );
 }
