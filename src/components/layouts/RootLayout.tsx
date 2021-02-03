@@ -2,11 +2,12 @@ import Home from '../pages/Home';
 import PlayList from '../pages/PlayList';
 import React from 'react';
 import RootRouter from '../routers/RootRouter';
+import {RouteType} from '../../types';
 import SideNavBar from '../shared/SideNavBar';
-import TodoList from '../pages/TodoList';
+import TodoListLayout from '../layouts/TodoListLayout';
 import styled from '@emotion/styled';
 
-const routes = [
+const routes: RouteType[] = [
   {
     key: "HOME",
     path: "/",
@@ -18,8 +19,7 @@ const routes = [
     key: "TODO_LIST",
     path: "/todo",
     name: "Todo List",
-    exact: true,
-    component: TodoList,
+    component: TodoListLayout,
   },
   {
     key: "PLAY_LIST",

@@ -1,5 +1,6 @@
-import {Route, Switch} from 'react-router-dom';
+import {Redirect, Route, Switch} from 'react-router-dom';
 
+import NotFound from '../pages/NotFound';
 import React from 'react';
 import {RouteType} from '../../types';
 
@@ -7,7 +8,7 @@ interface Props {
   routes: RouteType[];
 } 
 
-function RootRouter(props: Props): React.ReactElement {
+function TodoListRouter(props: Props) {
   const {routes} = props;
   
   const renderRoutes = routes.map((route, index) => (
@@ -19,12 +20,15 @@ function RootRouter(props: Props): React.ReactElement {
       exact={route.exact}
     />
   ));
+
   
   return (
     <Switch>
+      <Route path="/todo" exact render={() => <Redirect to="/todo/not_started" />} />
       {renderRoutes}
+      <Route component={NotFound} />
     </Switch>
   );
 }
 
-export default RootRouter;
+export default TodoListRouter;

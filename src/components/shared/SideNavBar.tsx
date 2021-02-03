@@ -10,7 +10,6 @@ interface Props {
 
 function SideNavBar (props: Props) {
   const {routes} = props;
-  const {pathname} = useLocation();
 
   const isLoggedUser = false;
 
@@ -23,11 +22,16 @@ function SideNavBar (props: Props) {
   }
 
   const navItems = routes.map((route, index) => {
-    const fontColor = pathname === route.path ? {color: "#37C7BE"} : {color: "#C4C4C4"};
     return (
       <ul key={route.key}>
         <li>
-          <NavLinkButton style={fontColor} to={route.path}>{route.name}</NavLinkButton>
+          <NavLinkButton 
+            activeStyle={{color: "#37C7BE"}} 
+            to={route.path} 
+            exact={route.exact}
+          >
+            {route.name}
+          </NavLinkButton>
         </li>
       </ul>
     );
@@ -78,7 +82,6 @@ const Nav = styled.nav`
 `;
 
 const LogoButton = styled(NavLink)`
-  border: none;
   padding: 10px 20px;
   font-size: 36px;
   font-weight: bold;
@@ -94,6 +97,7 @@ const NavLinkButton = styled(NavLink)`
   text-decoration: none;
   font-weight: bold;
   font-size: 25px;
+  color: #C4C4C4;
   flex: 1;
   text-align: center;
   padding: 10px;
