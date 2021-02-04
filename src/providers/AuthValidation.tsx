@@ -11,7 +11,7 @@ const AuthValidation: React.FC = ({children}) => {
   const [isGettingDataFromLS, setIsGettingDataFromLS] = useState(true);
 
   useEffect(() => {
-    const isPreviousLoggedIn = localStorage.getItem('isUserLoggedIn');
+    const isPreviousLoggedIn = localStorage.getItem('nickname');
 
     if (isPreviousLoggedIn) {
       setIsUserLoggedIn(true);

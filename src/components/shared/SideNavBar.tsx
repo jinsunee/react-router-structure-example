@@ -1,6 +1,7 @@
 import {NavLink, useLocation} from 'react-router-dom';
+import React, { useContext } from 'react';
 
-import React from 'react';
+import { AuthContext } from '../../providers/context';
 import {RouteType} from '../../types';
 import styled from '@emotion/styled';
 
@@ -10,15 +11,12 @@ interface Props {
 
 function SideNavBar (props: Props) {
   const {routes} = props;
+  const { setIsUserLoggedIn } = useContext(AuthContext);
 
-  const isLoggedUser = false;
 
   const logout = () => {
-    localStorage.removeItem('userUID');
-  }
-
-  const login = () => {
-    // history.pushState('/login')
+    localStorage.removeItem('nickname');
+    setIsUserLoggedIn(false);
   }
 
   const navItems = routes.map((route, index) => {
@@ -36,12 +34,6 @@ function SideNavBar (props: Props) {
       </ul>
     );
   });
-
-  const renderAuthenticationButton = isLoggedUser ? (
-    <AuthenticationButton onClick={logout}>LOGOUT</AuthenticationButton>
-  ) : (
-    <AuthenticationButton onClick={login}>LOGIN</AuthenticationButton>
-  )
   
   return (
     <Nav>
@@ -49,7 +41,7 @@ function SideNavBar (props: Props) {
         <LogoButton to="/">LOGO</LogoButton>
         {navItems}
       </div>
-      {renderAuthenticationButton}
+      <AuthenticationButton onClick={logout}>LOGOUT</AuthenticationButton>
     </Nav>
   );
 }
