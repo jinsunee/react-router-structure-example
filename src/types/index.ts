@@ -14,3 +14,9 @@ export type RouteType = {
   component: (props?: any) => React.ReactElement;
 };
   
+export type PlayListType = {
+  id: number;
+  title: string;
+  singer: string;
+  youtubeSrcID: string;
+}

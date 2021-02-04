@@ -1,5 +1,5 @@
 import Home from '../pages/Home';
-import PlayList from '../pages/PlayList';
+import PlayListLayout from '../layouts/PlayListLayout';
 import React from 'react';
 import RootRouter from '../routers/RootRouter';
 import {RouteType} from '../../types';
@@ -25,8 +25,7 @@ const routes: RouteType[] = [
     key: "PLAY_LIST",
     path: "/play_list",
     name: "Music PlayList",
-    exact: true,
-    component: PlayList,
+    component: PlayListLayout,
   },
 ];
 

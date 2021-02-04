@@ -60,7 +60,7 @@ const Items: React.FC<RouteComponentProps> = ({ history, location }) => {
 
     return (
         <>
-            <Row hoverColor="#fad800">
+            {/* <Row hoverColor="#fad800">
                 <Column
                     minWidth={ID_MIN_WIDTH}
                     onClick={() => setSortParamAndPush('id')}
@@ -88,7 +88,7 @@ const Items: React.FC<RouteComponentProps> = ({ history, location }) => {
                         <Column>{user.lastName}</Column>
                     </Row>
                 );
-            })}
+            })} */}
             <AdditionalInfo
                 param="Current location:"
                 value={location.pathname}

@@ -16,7 +16,7 @@ const Item: React.FC<RouteComponentProps<{userID: string}>> = ({
 
   return (
     <>
-      <Row hoverColor="#fad800">
+      {/* <Row hoverColor="#fad800">
         <Column minWidth={ID_MIN_WIDTH}>id</Column>
         <Column>first name</Column>
         <Column>last name</Column>
@@ -39,7 +39,7 @@ const Item: React.FC<RouteComponentProps<{userID: string}>> = ({
               <Column>{user.bankAccount}</Column>
             </Row>
           );
-        })}
+        })} */}
         <div style={{ display: 'flex', alignItems: 'center' }}>
           <div>Current location:</div>
           <h3>{` "${location.pathname}"`}</h3>
